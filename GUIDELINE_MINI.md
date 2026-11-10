@@ -1,27 +1,25 @@
-# Mini guideline — bài làm cá nhân
+# Bản quy tắc gán nhãn cá nhân (Mini guideline)
 
-> Điền nội dung này trước khi bắt đầu gán nhãn. Giữ lại các quyết định sau khi self-QC.
+## Định nghĩa các lớp xe
 
-## Định nghĩa lớp
-
-| Lớp | Định nghĩa của bạn | Ví dụ/điểm phân biệt |
+| Lớp xe | Định nghĩa | Dấu hiệu nhận biết và phân biệt |
 | --- | --- | --- |
-| `car` | Xe con cá nhân thông thường gồm sedan, hatchback, SUV, crossover, xe taxi, và xe bán tải (pickup) phục vụ gia đình/cá nhân. | Thân xe liền khối, gầm thấp hoặc bán tải cabin đôi không có thùng hàng trọng tải lớn chuyên dụng tách rời. |
-| `truck` | Xe tải chở hàng, xe ben, xe bồn, xe đầu kéo kéo rơ-moóc hoặc chở container. | Có thùng/ben chở hàng hoặc sàn cơ giới gắn tách rời rõ rệt với cabin điều khiển của lái xe. |
-| `bus` | Xe buýt công cộng, xe khách liên tỉnh, minibus chở khách theo tuyến. | Xe thân dài, có nhiều hàng ghế và nhiều ô cửa sổ kính liên tiếp chạy dọc hai bên thân xe. |
-| `van` | Xe van, minivan thân hộp kín một khối (monovolume) dùng chở người hoặc hàng hóa nhẹ. | Thân xe dạng khối hộp kín liền mạch giữa cabin và khoang sau; không dài nhiều cửa sổ như bus và không tách thùng rời như truck. |
+| `car` | Các loại xe ô tô con thông thường dùng cho cá nhân hoặc gia đình, bao gồm xe sedan 4 chỗ, xe đuôi cụt (hatchback), xe gầm cao 5–7 chỗ (SUV, CUV), xe taxi và xe bán tải gia đình. | Thân xe liền khối, chiều cao vừa phải. Xe bán tải cabin kép có thùng nhỏ phía sau vẫn tính là xe con vì mục đích sử dụng gia đình. |
+| `truck` | Các loại xe tải chuyên dụng dùng để chở hàng hóa nặng, xe ben, xe bồn chở chất lỏng, xe đầu kéo kéo theo rơ-moóc hoặc container. | Có phần thùng chở hàng hoặc sàn cơ giới gắn tách rời rõ ràng với cabin lái; kích thước xe to và gầm cao hơn xe con. |
+| `bus` | Xe buýt phục vụ giao thông công cộng trong thành phố, xe khách liên tỉnh đường dài, xe buýt nhỏ đưa đón theo tuyến. | Thân xe dài, có nhiều hàng ghế chở đông người và dãy cửa sổ kính chạy dài liên tục dọc hai bên sườn xe. |
+| `van` | Xe tải nhỏ chở hàng thân kín, xe minivan, xe chở khách loại nhỏ (từ 7 đến 16 chỗ ngồi). | Thân xe dạng khối hộp kín liền mạch từ đầu đến đuôi; không có thùng hàng rời như xe tải và không quá dài nhiều ô cửa sổ như xe buýt. |
 
-## Quy tắc chung
+## Quy tắc vẽ khung bao chung
 
-- Box bám sát vật thể nghĩa là: Bounding box phải ôm khít các mép ngoài cùng của phần thân xe nhìn thấy được (kể cả bánh xe tiếp đất và gương chiếu hậu nếu thấy rõ). Không bao gồm khoảng trống, bóng xe dưới lòng đường hay phần đường xung quanh.
-- Vật thể bị che khuất: Chỉ vẽ box bao quanh **phần thực tế nhìn thấy được** của xe. Tuyệt đối không suy đoán hoặc vẽ bao luôn cả phần bị che khuất bởi xe khác, cột đèn, dải phân cách.
-- Vật thể bị cắt bởi rìa ảnh: Vẽ box ôm sát phần nhìn thấy và kéo mép box chạm sát biên ảnh (tọa độ chạm 0 hoặc 1). Không ước lượng phần xe bị tràn ra ngoài khung ảnh.
-- Vật thể rất nhỏ/mơ hồ: Xe ở quá xa, bị mờ hoặc chỉ nhìn thấy một góc rất nhỏ không đủ bằng chứng tin cậy để xác định chính xác thuộc lớp nào thì **không gán** để tránh sinh ra false positive cho mô hình.
+- Khung bao ôm sát vật thể: Khung hình chữ nhật phải vẽ ôm khít toàn bộ phần vỏ ngoài nhìn thấy được của xe (tính cả bánh xe chạm mặt đường và gương chiếu hậu nếu thấy rõ). Tuyệt đối không lấy lấn sang mặt đường, khoảng trống trên trời hay phần thân của xe đi bên cạnh.
+- Xe bị che khuất một phần: Chỉ vẽ khung bao quanh đúng phần thân xe thực tế nhìn thấy bằng mắt. Không tự ý suy đoán hoặc vẽ bao trùm qua những chỗ bị xe khác, cột đèn hay dải phân cách che khuất.
+- Xe bị cắt bởi mép khung hình: Vẽ khung ôm sát phần thân xe nằm trong ảnh và kéo mép khung chạm đúng mép biên của bức ảnh (chạm tọa độ 0 hoặc 1). Không ước lượng hay vẽ phần xe bị tràn ra ngoài khung ảnh.
+- Xe ở quá xa hoặc quá mờ: Nếu xe chỉ còn là một chấm nhỏ hoặc một góc rất mờ không thể nhận diện chắc chắn loại xe thì không tự đoán để gán nhãn, tránh gây nhiễu cho mô hình.
 
-## Ghi lại quyết định cho ít nhất ba ca mơ hồ
+## Quyết định cho ba trường hợp khó quan sát trong tập ảnh
 
-| Ảnh | Tình huống | Quyết định cuối | Lý do theo schema |
+| Ảnh | Tình huống thực tế | Quyết định xử lý | Lý do căn cứ theo hướng dẫn |
 | --- | --- | --- | --- |
-| `drive_008.jpg` | Ở rìa trái ảnh có một xe lớn màu vàng bị cắt mép ảnh và bị che một phần thân. | Gán nhãn `bus` (Class 2) | Quan sát thấy các ô kính đặc trưng của phương tiện vận tải hành khách công cộng; box kéo sát mép trái của ảnh đúng theo quy tắc cắt biên (truncated). |
-| `drive_021.jpg` | Xe bán tải (pickup) đang lưu thông ở làn giữa, có thùng hàng phía sau nhưng kích thước xe con. | Gán nhãn `car` (Class 0) | Theo quy ước schema, xe bán tải phục vụ đi lại cá nhân thuộc nhóm `car`, chỉ xe tải chở hàng có thùng/ben tách rời chuyên dụng mới gán `truck`. |
-| `drive_038.jpg` | Có xe ở vị trí ngã tư phía xa bị che khuất hơn 70% bởi xe phía trước. | Không gán nhãn | Phần nhìn thấy còn lại quá nhỏ (chỉ thấy một góc nóc xe), không đủ đặc trưng tin cậy để phân biệt rõ giữa `car`, `van` hay `truck`. |
+| `drive_008.jpg` | Ở sát mép bên trái ảnh có một chiếc xe to màu vàng bị cắt ngang thân bởi rìa ảnh và bị xe khác che một phần. | Gán nhãn `bus` (lớp 2) | Nhận diện rõ dãy cửa sổ kính dài đặc trưng của phương tiện chở khách công cộng; khung bao được kéo chạm mép trái ảnh theo đúng quy tắc vật thể bị cắt biên. |
+| `drive_021.jpg` | Một chiếc xe bán tải màu bạc đang chạy ở làn giữa, phía sau có thùng chở đồ nhưng kích cỡ tương đương xe con. | Gán nhãn `car` (lớp 0) | Theo bảng phân loại của bài học, xe bán tải đi lại cá nhân được xếp vào nhóm xe con, chỉ những xe tải chở hàng có cabin tách rời với thùng lớn mới tính là xe tải. |
+| `drive_038.jpg` | Ở ngã tư phía xa có một chiếc xe bị xe đi trước che khuất hơn 70%, chỉ nhìn thấy lấp ló một góc nhỏ của nóc xe. | Không gán nhãn | Diện tích nhìn thấy còn lại quá ít, không đủ đặc trưng rõ ràng để khẳng định chắc chắn là xe con, xe van hay xe tải, nếu cố đoán sẽ dễ gây sai lệch nhãn. |
