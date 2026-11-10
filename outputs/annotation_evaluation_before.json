@@ -3,7 +3,7 @@
   "precision": 0.4711,
   "recall": 0.9112,
   "f1": 0.6211,
-  "mean_iou_of_matches": 0.8524,
+  "mean_iou_of_matches": 0.8523,
   "true_positive": 595,
   "false_positive": 668,
   "false_negative": 58,

@@ -112,6 +112,9 @@ def main():
     if dst_runs.exists():
         shutil.rmtree(dst_runs)
     shutil.copytree(runs_dir, dst_runs, ignore=shutil.ignore_patterns("*.pt"))
+    weights_dir = dst_runs / "vehicle_annotation/weights"
+    if weights_dir.exists():
+        shutil.rmtree(weights_dir)
 
     # Also zip outputs
     zip_path = root / "outputs/day2_colab_outputs"
